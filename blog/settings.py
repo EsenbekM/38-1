@@ -7,10 +7,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY - Секретный ключ проекта
 SECRET_KEY = 'django-insecure-2@hy_p@3-671jv&q6e2rybok+qnko9ol1&kh^6z*=-6r&*0dhb'
 
-# TODO: 
+# DEBUG - Режим отладки 
 DEBUG = True
 
-# TODO
+# ALLOWED_HOSTS - Разрешенные хосты
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -24,7 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles', # Приложение для работы со статическими файлами
 
     # Пользовательские приложения
-    'post',
+    'post.apps.PostConfig', # Приложение для работы с постами
 ]
 
 # TODO: MIDDLWARE - Промежуточное ПО 
@@ -100,5 +100,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
-# TODO
+# DEFAULT_AUTO_FIELD - Поле по умолчанию
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

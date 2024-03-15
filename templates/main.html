@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main page</title>
-</head>
-<body>
-    <h1>
-        Welcome to the main page! {{ name }}
-    </h1>
+{% extends "components/navbar.html" %}
+{% block content %}
 
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis eius consequuntur architecto ab nemo minus similique repellendus. Quos molestias reprehenderit qui laborum error, corrupti recusandae cum, molestiae nobis ratione nisi!
-    </p>
+<img src="https://m.media-amazon.com/images/I/51y8GUVKJoL._AC_UF894,1000_QL80_.jpg" width="200">
 
-    {% for data in mock_data %}
-        {% if not data.id == 2 %}
-            <h2>
-                {{ data.id }} {{ data.name }} - {{ data.age }}
-            </h2>
-        {% endif %}
-    {% endfor %}
+<h1>
+    Welcome to the main page!
+</h1>
 
+<p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis eius consequuntur architecto ab nemo minus similique repellendus. Quos molestias reprehenderit qui laborum error, corrupti recusandae cum, molestiae nobis ratione nisi!
+</p>
 
-    
-</body>
-</html>
+{% endblock %}
