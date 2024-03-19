@@ -9,7 +9,10 @@
         <div class="card-body">
             <h5 class="card-title">{{ post.title }} {{ post.rate }}</h5>
             <p class="card-text">{{ post.content }}</p>
-            <a href="#" class="btn btn-primary">Читать...</a>
+            {% for tag in post.tags.all %}
+                <a href="#" class="btn btn-secondary">{{ tag.name }}</a>
+            {% endfor %}
+            <a href="{{ post.id }}" class="btn btn-primary">Читать...</a>
         </div>
     </div>
 {% endfor %}

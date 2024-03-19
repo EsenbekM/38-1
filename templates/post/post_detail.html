@@ -1,0 +1,36 @@
+{% extends 'components/navbar.html' %}
+
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+
+<p>{{ post.content }}</p>
+
+<p>Published on {{ post.created_at }} </p>
+
+<p>
+    Rate: {{ post.rate }}
+</p>
+
+
+
+<h1>
+    Tags:
+</h1>
+
+{% for tag in post.tags.all %}
+    <p>{{ tag.name }}</p>
+{% endfor %}
+
+
+<h1>
+    Comments:
+</h1>
+
+{% for comment in post.comments.all %}
+    <p>{{ comment.text }}</p>
+    <p>Published on {{ comment.created_at }}</p>
+{% endfor %}
+
+
+{% endblock %}

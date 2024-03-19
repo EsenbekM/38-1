@@ -10,7 +10,7 @@ import random
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from post.models import Post
+from post.models import Post, Comment
 
 
 def hello_view(request):
@@ -52,4 +52,15 @@ def post_list_view(request):
     context = {'posts': posts}
 
     # 3. Отображаем шаблон
-    return render(request, 'post_list.html', context)
+    return render(request, 'post/post_list.html', context)
+
+
+def post_detail_view(request, post_id):
+    try:
+        post = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return render(request, 'errors/404.html')
+
+    context = {'post': post}
+
+    return render(request, 'post/post_detail.html', context)
