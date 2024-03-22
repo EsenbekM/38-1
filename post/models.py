@@ -33,8 +33,8 @@ class Tag(models.Model):
     
 
 class Post(models.Model):
-    image = models.ImageField(upload_to='post_images/%Y/%m/%d/', null=True, blank=True)
-    title = models.CharField(max_length=255)
+    image = models.ImageField("Картинка", upload_to='post_images/%Y/%m/%d/', null=True, blank=True)
+    title = models.CharField(max_length=255, verbose_name='Заголовок')
     content = models.TextField(null=True, blank=True)
     rate = models.FloatField(default=0)
     tags = models.ManyToManyField(
@@ -47,6 +47,12 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.rate}"
+    
+    class Meta:
+        db_table = 'post'
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
+        ordering = ['-created_at']
 
 
 class Comment(models.Model):
