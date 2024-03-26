@@ -1,9 +1,11 @@
 
+dct = {
+    "name": "John",
+    "age": 25
+}
 
-def sum(x, y): 
-    print(x + y)
-    return x + y
+variant_1 = dct["name"]
+variant_2 = dct.get("nam", "default_value")
 
-a = sum(2, 3)
-
-print(a) 
+print(variant_1)
+print(variant_2)

@@ -7,10 +7,11 @@ HTTP methods:
 '''
 import random
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from post.models import Post, Comment
+from post.forms import PostForm, PostForm2
 
 
 def hello_view(request):
@@ -64,3 +65,35 @@ def post_detail_view(request, post_id):
     context = {'post': post}
 
     return render(request, 'post/post_detail.html', context)
+
+
+def post_create_view(request):
+    if request.method == 'GET':
+        form = PostForm2()
+        return render(request, 'post/post_create.html', {'form': form})
+    
+    if request.method == 'POST':
+        form = PostForm2(request.POST, request.FILES)
+        # form.add_error('content', 'Текст не должен содержать слово Python!')
+
+        if not form.is_valid():
+            return render(request, 'post/post_create.html', {'form': form})
+
+        title = form.cleaned_data.get('title')
+        content = form.cleaned_data.get('content')
+        image = form.cleaned_data.get('image')
+        rate = form.cleaned_data.get('rate')
+        tags = form.cleaned_data.get('tags')
+
+        post = Post.objects.create(
+            title=title,
+            content=content,
+            image=image,
+            rate=rate,
+        )
+
+        post.tags.set(tags)
+        # post.tags.add(1)
+        post.save()
+
+        return redirect('post_list')
